@@ -6,7 +6,9 @@ h4 {
     padding: 0px;
     margin: 0px;
 }
-
+.blue{
+  background-color: blue;
+}
 .btn-talk {
     -webkit-border-radius: 5;
     -moz-border-radius: 5;
@@ -58,6 +60,7 @@ h4 {
     border: 1px solid #C0C2C5;
     padding: 10px;
     font-size: 18px;
+    overflow: scroll;
 }
 
 #question-area {
