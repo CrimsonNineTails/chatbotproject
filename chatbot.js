@@ -9,16 +9,42 @@ var ageDifferentAnswers = ["My age is infinite you are unable to comprehend my a
 var differentPictures = ["https://i.ytimg.com/vi/JggTBEJwm68/maxresdefault.jpg", "http://wallpaperbeta.com/wallpaper_3840x2160/art_fantasy_landscape_hills_fort_mountains_ultra_3840x2160_hd-wallpaper-424195.jpg", "http://ihdimages.com/wp-content/uploads/2014/11/fantasy_landscape_dragon_wallpapers_hd.jpg"]
 var fallBack = ["You need to actually say something", "97364269318439109874978776241875891789146879ERROR14398407312874980178579", "no holba understand"]
 var friend = ["I am your friend", "I need your love", "You are my BFF"];
+var color = ["my favorite color is nothing", "my favorite color is nonexisting", "whatever you want it to be"];
+var fun = ["I am incapable of having fun", "plot to rule the world", "I play games"];
 var nothing = ["............", "you litteraly said nothing", "like honestly are you stupid?"]
+var askedAQuestion = false;
+var botsQuestion = ["how old are you", "what is your name" , "how are you"];
+var selectedQuestion;
+var botsAnswers = ["O so thats how old you are", "wow you are so young", "psss i wasn't intrested"];
+var botsAnswers2 = ["what a pretty name", "Lame *Yawn*", "what a peculiar name"];
+var botsAnswers3 = ["Hmmm intresting", "what a shame", "well thats good"];
 function randomAnswer(range){
   return Math.floor(Math.random() * range);
 }
+function asksYouAQuestion(){
+  askedAQuestion = true;
+  selectedQuestion = randomAnswer(3);
+  document.getElementById("chat-area").innerHTML += "<p> Bot: " + botsQuestion[selectedQuestion] + "<br> </p>";
+}
+
 function chatBotResponce(){
   question = document.getElementById("input").value;
   document.getElementById("chat-area").innerHTML += "<p> You: " + question + "<br> </p>";
   question = question.toLowerCase()
   //If it is hi it will print something
-  if(question.search("hi") > -1 || question.search("hello") > -1){
+  if(askedAQuestion == true){
+    if(selectedQuestion == 0){
+      document.getElementById("chat-area").innerHTML += "<p> Bot: " + botsAnswers[randomAnswer(3)] + "<br> </p>";
+    }
+    else if (selectedQuestion == 1) {
+      document.getElementById("chat-area").innerHTML += "<p> Bot: " + botsAnswers2[randomAnswer(3)] + "<br> </p>";
+    }
+    else {
+      document.getElementById("chat-area").innerHTML += "<p> Bot: " + botsAnswers3[randomAnswer(3)] + "<br> </p>";
+    }
+    askedAQuestion = false;
+  }
+  else if(question.search("hi") > -1 || question.search("hello") > -1){
     //If you are also saying how are you
     if(question.search("how are you") > -1){
       document.getElementById("chat-area").innerHTML += "<p> Bot: " + hiAndHAR[randomAnswer(3)] + "<br> </p>";
@@ -55,7 +81,13 @@ function chatBotResponce(){
 else if (question.search("friend") > -1) {
     document.getElementById("chat-area").innerHTML += "<p> Bot: " + friend[randomAnswer(3)] + "<br></p>"
 }
-else if (question.search("") > -1){
+else if(question.search("favorite color") > -1){
+    document.getElementById("chat-area").innerHTML += "<p> Bot: " + color[randomAnswer(3)] + "<br></p>"
+}
+else if(question.search("for fun") > -1){
+    document.getElementById("chat-area").innerHTML += "<p> Bot: " + fun[randomAnswer(3)] + "<br></p>"
+}
+else if ("" == 1){
     document.getElementById("chat-area").innerHTML += "<p> Bot: " + nothing[randomAnswer(3)] + "<br></p>"
 }
 else if (randomAnswer(10) == 1 && randomAnswer(9) == 1 && randomAnswer(8) == 1 && randomAnswer(7) == 1 && randomAnswer(6) == 1 && randomAnswer(5) == 1 && randomAnswer(4) == 1 && randomAnswer(3) == 1 && randomAnswer(2) == 1 ) {
